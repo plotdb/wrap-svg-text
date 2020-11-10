@@ -1,0 +1,8 @@
+extends /base.pug
+block body
+  .w-1024.mx-auto.rwd.my-4
+    h3 wrap-svg-text
+    p Wrap long texts into multiple svg text in multiple lines. CJK ready. The following paragraphs are automatically generated, in SVG texts:
+    .w-100.aspect-ratio.ratio-2by1: svg.w-100.h-100.border.shadow-sm.rounded(ld="svg")
+block script
+  +script("/js/index.js")

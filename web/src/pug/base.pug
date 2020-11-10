@@ -1,0 +1,24 @@
+//- module
+doctype html
+html
+  block vars
+  include /../../static/assets/lib/bootstrap.ldui/main/index.pug
+  head
+    block prehead
+    +css("assets/lib/bootstrap/main/css/bootstrap.min.css")
+    +css("assets/lib/bootstrap.ldui/main/bootstrap.ldui.min.css")
+    +css("assets/lib/ldiconfont/main/ldif.min.css")
+    +css("https://fonts.googleapis.com/css?family=Roboto:300,400,700|Roboto+Mono")
+    +css("assets/lib/ldcover/main/ldcv.min.css")
+    +css("css/index.css")
+    block head
+  body
+    block body
+    +script("assets/lib/bootstrap.native/main/bootstrap-native.min.js")
+    +script("assets/lib/bootstrap.ldui/main/bootstrap.ldui.min.js")
+    +script("assets/lib/@loadingio/ldquery/main/ldq.min.js")
+    +script("assets/lib/ldcover/main/ldcv.min.js")
+    +script("assets/lib/ldview/main/ldview.min.js")
+    +script("assets/lib/wrap-svg-text/dev/wrap-svg-text.min.js")
+    block script
+

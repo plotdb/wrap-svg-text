@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+mkdir -p dist
+echo "build src/main.ls -> dist/wrap-svg-text.js ..."
+./node_modules/.bin/lsc -cbp src/main.ls > dist/wrap-svg-text.js
+echo "minifying wrap-svg-text.js ..."
+./node_modules/.bin/uglifyjs dist/wrap-svg-text.js > dist/wrap-svg-text.min.js
+echo "deploy into local web ..."
+mkdir -p web/static/assets/lib/wrap-svg-text/dev
+cp -R dist/* web/static/assets/lib/wrap-svg-text/dev
+echo "done."
+
