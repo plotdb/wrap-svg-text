@@ -14,7 +14,7 @@ Generate multiline svg texts directly through a text string and a set of css sty
 
 ## Mechanism
 
-wrap-svg-text simply calculate layout of text with the help of browser layout engine itself. Input texts with specified style are added directly in a hidden div, with every single glyph wrapped in span. Then, span are joined based on their y coordinate, and added back as a `<text>` tag in a `<g>` tag, which is returned from `wrapSvgText` function call.
+wrap-svg-text simply calculates layouts of texts with the help of browser layout engine. Input texts with specified style are added directly in a hidden div, with every single glyph wrapped in span. Then, span are joined based on their y coordinate, and added back as a `<text>` tag in a `<g>` tag, which is returned from `wrapSvgText` function call.
 
 
 ## Credit
