@@ -13,41 +13,78 @@ flush = function(o){
   text.setAttribute('dominant-baseline', 'hanging');
   return text;
 };
-main = function(arg$){
-  var text, style, div, ref$, spans, obj, texts, that, g;
-  text = arg$.text, style = arg$.style;
+main = function(opt){
+  var text, style, div, ref$, range, obj, texts, i$, to$, j, t, tt, j$, to1$, i, box, that, g, spans;
+  opt == null && (opt = {});
+  text = opt.text, style = opt.style;
   div = document.createElement('div');
   import$((ref$ = div.style, ref$.opacity = 0, ref$["pointer-events"] = 'none', ref$["z-index"] = 0, ref$["position"] = 'absolute', ref$.top = 0, ref$.left = 0, ref$), style);
   document.body.appendChild(div);
-  spans = text.split('').map(function(t){
-    var span;
-    div.appendChild(span = document.createElement('span'));
-    span.appendChild(document.createTextNode(t));
-    return span;
-  });
-  obj = {
-    text: "",
-    x: NaN,
-    y: NaN
-  };
-  texts = [];
-  spans.map(function(it){
-    var box, that;
-    box = it.getBoundingClientRect();
-    if (obj.y === box.y) {
-      return obj.text += it.textContent;
-    } else {
-      if (that = flush(obj)) {
-        texts.push(that);
+  if (opt.useRange) {
+    div.innerText = text;
+    range = document.createRange();
+    obj = {
+      text: "",
+      x: NaN,
+      y: NaN
+    };
+    texts = [];
+    for (i$ = 0, to$ = div.childNodes.length; i$ < to$; ++i$) {
+      j = i$;
+      t = div.childNodes[j];
+      tt = t.textContent;
+      for (j$ = 0, to1$ = t.length; j$ < to1$; ++j$) {
+        i = j$;
+        range.setStart(t, i);
+        range.setEnd(t, i + 1);
+        box = range.getBoundingClientRect();
+        if (obj.y === box.y) {
+          obj.text += tt[i];
+        } else {
+          if (that = flush(obj)) {
+            texts.push(that);
+          }
+          obj.text = tt[i];
+          obj.x = box.x;
+          obj.y = box.y;
+        }
       }
-      obj.text = it.textContent;
-      return obj.x = box.x, obj.y = box.y, obj;
     }
-  });
-  if (that = flush(obj)) {
-    texts.push(that);
+    if (that = flush(obj)) {
+      texts.push(that);
+    }
+    g = document.createElementNS(ns, "g");
+  } else {
+    spans = text.split('').map(function(t){
+      var span;
+      div.appendChild(span = document.createElement('span'));
+      span.appendChild(document.createTextNode(t));
+      return span;
+    });
+    obj = {
+      text: "",
+      x: NaN,
+      y: NaN
+    };
+    texts = [];
+    spans.map(function(it){
+      var box, that;
+      box = it.getBoundingClientRect();
+      if (obj.y === box.y) {
+        return obj.text += it.textContent;
+      } else {
+        if (that = flush(obj)) {
+          texts.push(that);
+        }
+        obj.text = it.textContent;
+        return obj.x = box.x, obj.y = box.y, obj;
+      }
+    });
+    if (that = flush(obj)) {
+      texts.push(that);
+    }
+    g = document.createElementNS(ns, "g");
   }
-  g = document.createElementNS(ns, "g");
   texts.map(function(it){
     return g.appendChild(it);
   });
