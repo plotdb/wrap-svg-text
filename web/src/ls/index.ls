@@ -1,6 +1,15 @@
 view = new ldView do
   root: document.body
+  init-render: false
   handler:
+    "inplace-div": ->
+    "inplace-svg": ({node}) ->
+      t1 = Date.now!
+      ret = wrap-svg-text do
+        node: view.get('inplace-div')
+      node.appendChild ret
+      console.log "inplace mode: elapsed time: ", Date.now! - t1
+
     svg: ({node}) ->
       t1 = Date.now!
       for i from 0 til 1 =>
@@ -24,4 +33,8 @@ view = new ldView do
 
       ret.setAttribute \transform, "translate(20,20)"
 
-      console.log Date.now! - t1
+      console.log "js mode: elapsed time: ", Date.now! - t1
+
+setTimeout (->
+  view.render!
+), 100

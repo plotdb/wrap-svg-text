@@ -3,7 +3,7 @@
   "name": "wrap-svg-text",
   "license": "MIT",
   "description": "wrap svg text into group of multiline texts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "files": [
     "dist/**/*"
   ],
@@ -17,21 +17,22 @@
     "npm": ">=6.4.1"
   },
   "scripts": {
-    "start": "cd web; npx server",
+    "start": "npx server -r web -o true",
     "deploy": "npx deploy web/static"
   },
   "devDependencies": {
-    "@loadingio/ldquery": "^1.1.1",
-    "LiveScript": ">=1.2.0",
+    "@loadingio/ldquery": "^2.0.0",
+    "livescript": "^1.6.0",
     "bootstrap": "^4.5.3",
     "bootstrap.ldui": "github:loadingio/bootstrap.ldui",
     "bootstrap.native": "^3.0.13",
     "deploy": "github:zbryikt/deploy",
-    "fedep": "0.0.5",
+    "fedep": "^0.0.12",
     "fs-extra": "^8.0.0",
-    "ldcover": "github:loadingio/ldCover",
-    "ldiconfont": "github:loadingio/ldiconfont",
-    "template": "github:zbryikt/template#v2.1.1"
+    "ldcover": "^1.3.1",
+    "ldiconfont": "^0.1.5",
+    "ldview": "^0.0.2",
+    "template": "github:zbryikt/template#v2.3.13"
   },
   "frontendDependencies": {
     "root": "web/static/assets/lib",
@@ -44,8 +45,5 @@
       "bootstrap.native",
       "ldiconfont"
     ]
-  },
-  "dependencies": {
-    "ldview": "0.0.2"
   }
 }

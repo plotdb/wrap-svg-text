@@ -11,10 +11,39 @@ Generate multiline svg texts directly through a text string and a set of css sty
         }
     });
 
+## Usage
+
+install:
+
+    npm install --save wrap-svg-text
+
+include:
+
+    <script src="path-to-wrap-svg-text.js"></script>
+
+
+call:
+
+    ret = wrapSvgText({text: '...', style: { ... }});
+    myGroup.textContent = ""; /* clear myGroup content */
+    myGroup.appendChild(ret)
+
+
+with prepared div `node` so we don't have to mimic its style ( content inside ):
+
+    ret = wrapSvgText({node: node});
+    myGroup.textContent = ""; /* clear myGroup content */
+    myGroup.appendChild(ret)
+
 
 ## Mechanism
 
 wrap-svg-text simply calculates layouts of texts with the help of browser layout engine. Input texts with specified style are added directly in a hidden div, with every single glyph wrapped in span. Then, span are joined based on their y coordinate, and added back as a `<text>` tag in a `<g>` tag, which is returned from `wrapSvgText` function call.
+
+
+## Note
+
+Layout is calculated directly based on CSS and DOM, thus it's important to make sure that when running wrap-svg-text, CSS and DOM are ready and correctly rendered, otherwise wrap-svg-text may give incorrect result due to style updating.
 
 
 ## Credit

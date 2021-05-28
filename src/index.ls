@@ -12,16 +12,23 @@ flush = (o) ->
 
 main = (opt = {}) ->
   {text,style} = opt
-  div = document.createElement \div
-  div.style <<< {
-    opacity: 0
-    "pointer-events": \none
-    "z-index": 0
-    "position": \absolute
-    top: 0
-    left: 0
-  } <<< style
-  document.body.appendChild div
+  if opt.node =>
+    div = opt.node
+    if !text => text = div.textContent
+    div.textContent = ""
+  else
+    div = document.createElement \div
+    div.style <<< {
+      opacity: 0
+      "pointer-events": \none
+      "z-index": 0
+      "position": \absolute
+      top: 0
+      left: 0
+    } <<< style
+    document.body.appendChild div
+  divbox = div.getBoundingClientRect!
+
   if opt.use-range => # seems slower. default disabled.
     div.innerText = text
     range = document.createRange!
@@ -34,12 +41,13 @@ main = (opt = {}) ->
         range.setStart t, i
         range.setEnd t, i + 1
         box = range.getBoundingClientRect!
-        if obj.y == box.y =>
+        if obj.y == box.y - divbox.y =>
           obj.text += tt[i]
         else
           if flush(obj) => texts.push that
           obj.text = tt[i]
-          obj <<< box{x,y}
+          obj.x = box.x - divbox.x
+          obj.y = box.y - divbox.y
 
     if flush(obj) => texts.push that
     g = document.createElementNS(ns,"g")
@@ -52,17 +60,19 @@ main = (opt = {}) ->
     texts = []
     spans.map ->
       box = it.getBoundingClientRect!
-      if obj.y == box.y =>
+      if obj.y == box.y - divbox.y =>
         obj.text += it.textContent
       else
         if flush(obj) => texts.push that
         obj.text = it.textContent
-        obj <<< box{x,y}
+        obj.x = box.x - divbox.x
+        obj.y = box.y - divbox.y
     if flush(obj) => texts.push that
     g = document.createElementNS(ns,"g")
 
   texts.map -> g.appendChild it
-  document.body.removeChild div
+  if !opt.node => document.body.removeChild div
+  else div.textContent = div.textContent
   return g
 
 if module? => module.exports = main 
