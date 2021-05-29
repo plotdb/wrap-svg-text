@@ -36,6 +36,26 @@ with prepared div `node` so we don't have to mimic its style ( content inside ):
     myGroup.appendChild(ret)
 
 
+## Options
+
+ - `text`: string. text to render.
+ - `style`: object containing styles for rendering above text. optional.
+ - `node`: when provided, use this node to layout content.
+    - content may be altered due to algorithm in `wrap-svg-text`. check `useRange` for more detail.
+    - `node` should contain plain text only. 
+    - `text` can be omitted if there are contents already in `node`
+    - `style` will be ignored when node is provided.
+ - `useRange`: if true, use `document.range` for position calculation. default false. see below.
+
+
+### useRange
+
+`wrap-svg-text` by default get characters' position by wrapping them in span. however, this may touch node's content if user provide `node` as a paramter when calling `wrap-svg-text`. This may causing re-layout and change the position of elements, leading to incorrect result.
+
+In this case, user can alternatively enable `useRange` and let `wrap-svg-text` calculate the position with `range.getBoundingClientRect`. However, this is 2 times slower so only suggested using for short text.
+
+
+
 ## Mechanism
 
 wrap-svg-text simply calculates layouts of texts with the help of browser layout engine. Input texts with specified style are added directly in a hidden div, with every single glyph wrapped in span. Then, span are joined based on their y coordinate, and added back as a `<text>` tag in a `<g>` tag, which is returned from `wrapSvgText` function call.

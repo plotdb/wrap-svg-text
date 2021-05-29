@@ -27,10 +27,11 @@ main = (opt = {}) ->
       left: 0
     } <<< style
     document.body.appendChild div
-  divbox = div.getBoundingClientRect!
 
-  if opt.use-range => # seems slower. default disabled.
+  if opt.use-range =>
+    # seems slower, but doesn't modify DOM. default disabled.
     div.innerText = text
+    divbox = div.getBoundingClientRect!
     range = document.createRange!
     obj = { text: "", x: NaN, y: NaN }
     texts = []
@@ -56,6 +57,7 @@ main = (opt = {}) ->
       div.appendChild span = document.createElement(\span)
       span.appendChild document.createTextNode(t)
       return span
+    divbox = div.getBoundingClientRect!
     obj = { text: "", x: NaN, y: NaN }
     texts = []
     spans.map ->

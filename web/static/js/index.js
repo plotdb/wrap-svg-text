@@ -21,6 +21,7 @@ view = new ldView({
       for (i$ = 0; i$ < 1; ++i$) {
         i = i$;
         node.appendChild(ret = wrapSvgText({
+          useRange: true,
           style: {
             width: (node.getBoundingClientRect().width - 40) + "px",
             whiteSpace: 'pre-line'

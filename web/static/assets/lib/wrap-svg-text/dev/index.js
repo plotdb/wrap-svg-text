@@ -28,9 +28,9 @@ main = function(opt){
     import$((ref$ = div.style, ref$.opacity = 0, ref$["pointer-events"] = 'none', ref$["z-index"] = 0, ref$["position"] = 'absolute', ref$.top = 0, ref$.left = 0, ref$), style);
     document.body.appendChild(div);
   }
-  divbox = div.getBoundingClientRect();
   if (opt.useRange) {
     div.innerText = text;
+    divbox = div.getBoundingClientRect();
     range = document.createRange();
     obj = {
       text: "",
@@ -70,6 +70,7 @@ main = function(opt){
       span.appendChild(document.createTextNode(t));
       return span;
     });
+    divbox = div.getBoundingClientRect();
     obj = {
       text: "",
       x: NaN,

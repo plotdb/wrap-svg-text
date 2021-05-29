@@ -14,6 +14,7 @@ view = new ldView do
       t1 = Date.now!
       for i from 0 til 1 =>
         node.appendChild ret = wrapSvgText do
+          use-range: true
           style:
             width: "#{node.getBoundingClientRect!width - 40}px"
             whiteSpace: \pre-line
