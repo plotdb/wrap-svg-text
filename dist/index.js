@@ -17,6 +17,8 @@ main = function(opt){
   var text, style, div, ref$, divbox, range, obj, texts, i$, to$, j, t, tt, j$, to1$, i, box, that, g, spans;
   opt == null && (opt = {});
   text = opt.text, style = opt.style;
+  style = opt.style || {};
+  text = opt.text || '';
   if (opt.node) {
     div = opt.node;
     if (!text) {

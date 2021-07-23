@@ -12,6 +12,8 @@ flush = (o) ->
 
 main = (opt = {}) ->
   {text,style} = opt
+  style = opt.style or {}
+  text = opt.text or ''
   if opt.node =>
     div = opt.node
     if !text => text = div.textContent
