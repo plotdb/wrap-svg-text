@@ -1,0 +1,98 @@
+{
+  "name": "bootstrap.native",
+  "version": "3.0.15",
+  "description": "Native JavaScript for Bootstrap, the sweetest JavaScript library without jQuery.",
+  "main": "dist/bootstrap-native.min.js",
+  "types": "src/index.d.ts",
+  "module": "dist/bootstrap-native.esm.js",
+  "jsnext": "src/index.js",
+  "files": [
+    "dist/*.{js,map}",
+    "dist/**/*.{js,map}",
+    "src/*.{js,ts,map}",
+    "src/**/*.{js,map}"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "help": "rollup --help",
+    "build": "npm run lint:js && npm-run-all --parallel build-* && npm-run-all --parallel module-*",
+    "custom": "rollup -c --environment",
+    "fix:js": "eslint src/ --config .eslintrc --fix",
+    "lint:js": "eslint src/ --config .eslintrc",
+    "build-v4-esm": "rollup --environment INPUTFILE:./src/index-v4.js,OUTPUTFILE:./dist/bootstrap-native-v4-esm.js,FORMAT:esm,MIN:false -c",
+    "build-v4-esm-min": "rollup --environment INPUTFILE:./src/index-v4.js,OUTPUTFILE:./dist/bootstrap-native-v4-esm.min.js,FORMAT:esm,MIN:true -c",
+    "build-v4-umd": "rollup --environment INPUTFILE:./src/index-v4.js,OUTPUTFILE:./dist/bootstrap-native-v4.js,FORMAT:umd,MIN:false -c",
+    "build-v4-umd-min": "rollup --environment INPUTFILE:./src/index-v4.js,OUTPUTFILE:./dist/bootstrap-native-v4.min.js,FORMAT:umd,MIN:true -c",
+    "build-esm": "rollup --environment FORMAT:esm,MIN:false -c",
+    "build-esm-min": "rollup --environment FORMAT:esm,MIN:true -c",
+    "build-umd": "rollup --environment FORMAT:umd,MIN:false -c",
+    "build-umd-min": "rollup --environment FORMAT:umd,MIN:true -c",
+    "modules": "npm-run-all --parallel module-*",
+    "module-alert-esm": "rollup --environment MODULE:alert,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-button-esm": "rollup --environment MODULE:button,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-carousel-esm": "rollup --environment MODULE:carousel,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-collapse-esm": "rollup --environment MODULE:collapse,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-dropdown-esm": "rollup --environment MODULE:dropdown,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-modal-esm": "rollup --environment MODULE:modal,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-offcanvas-esm": "rollup --environment MODULE:offcanvas,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-popover-esm": "rollup --environment MODULE:popover,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-scrollspy-esm": "rollup --environment MODULE:scrollspy,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-tab-esm": "rollup --environment MODULE:tab,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-toast-esm": "rollup --environment MODULE:toast,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-tooltip-esm": "rollup --environment MODULE:tooltip,FORMAT:esm,MIN:false -c rollup.module.js",
+    "module-alert-umd": "rollup --environment MODULE:alert,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-button-umd": "rollup --environment MODULE:button,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-carousel-umd": "rollup --environment MODULE:carousel,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-collapse-umd": "rollup --environment MODULE:collapse,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-dropdown-umd": "rollup --environment MODULE:dropdown,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-modal-umd": "rollup --environment MODULE:modal,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-offcanvas-umd": "rollup --environment MODULE:offcanvas,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-popover-umd": "rollup --environment MODULE:popover,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-scrollspy-umd": "rollup --environment MODULE:scrollspy,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-tab-umd": "rollup --environment MODULE:tab,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-toast-umd": "rollup --environment MODULE:toast,FORMAT:umd,MIN:false -c rollup.module.js",
+    "module-tooltip-umd": "rollup --environment MODULE:tooltip,FORMAT:umd,MIN:false -c rollup.module.js",
+    "polyfill": "npm-run-all --parallel polyfill-unminified polyfill-minified",
+    "polyfill-unminified": "rollup --environment MIN:false -c rollup.polyfill.js",
+    "polyfill-minified": "rollup --environment MIN:true -c rollup.polyfill.js",
+    "watch": "rollup --environment FORMAT:umd,MIN:false -c -w"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not <= 1%",
+    "not IE 10"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thednp/bootstrap.native.git"
+  },
+  "keywords": [
+    "bootstrap.native",
+    "bootstrap",
+    "vanilla js",
+    "native javascript",
+    "vanilla javascript"
+  ],
+  "author": "dnp_theme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thednp/bootstrap.native/issues"
+  },
+  "homepage": "https://thednp.github.io/bootstrap.native/",
+  "dependencies": {
+    "minifill": "^0.0.16",
+    "shorter-js": "^0.2.0-alpha4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.7.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.38.5",
+    "rollup-plugin-terser": "^5.3.1"
+  }
+}
