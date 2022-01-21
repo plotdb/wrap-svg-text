@@ -1,5 +1,13 @@
 # Change Logs
 
+## v0.0.7
+
+ - upgrade modules
+ - release with compact directory structure
+ - add `main` and `browser` field in `package.json`.
+ - further minimize generated js file with mangling and compression
+ - patch test code to make it work with upgraded modules
+
 ## v0.0.6
 
  - fix bug: provide default value for text and style in case of exception caused by null value
