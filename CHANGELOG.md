@@ -1,5 +1,11 @@
 # Change Logs
 
+## v0.0.8
+
+ - fix bug: exception when a numeric value is provided
+ - upgrade dependencies
+
+
 ## v0.0.7
 
  - upgrade modules
