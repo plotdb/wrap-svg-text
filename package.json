@@ -23,18 +23,18 @@
     "deploy": "npx deploy web/static"
   },
   "devDependencies": {
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.1",
     "bootstrap.native": "^3.0.13",
-    "@loadingio/bootstrap.ext": "^0.0.4",
-    "@loadingio/ldquery": "^3.0.1",
+    "@loadingio/bootstrap.ext": "^0.0.12",
+    "@loadingio/ldquery": "^3.0.6",
     "fs-extra": "^8.0.0",
     "livescript": "^1.6.0",
-    "fedep": "^1.1.2",
-    "ldcover": "^3.0.1",
-    "ldiconfont": "^0.1.10",
-    "ldview": "^1.0.0",
-    "@zbryikt/deploy": "^0.0.1",
-    "@zbryikt/template": "^2.3.33"
+    "fedep": "^1.6.0",
+    "ldcover": "^3.5.6",
+    "ldiconfont": "^0.2.8",
+    "ldview": "^1.5.2",
+    "@zbryikt/deploy": "^0.0.4",
+    "@zbryikt/template": "^2.4.1"
   },
   "frontendDependencies": {
     "root": "web/static/assets/lib",
