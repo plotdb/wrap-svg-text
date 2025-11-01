@@ -66,7 +66,7 @@
       }
       g = document.createElementNS(ns, "g");
     } else {
-      spans = text.split('').map(function(t){
+      spans = ((text != null ? text : '') + "").split('').map(function(t){
         var span;
         div.appendChild(span = document.createElement('span'));
         span.appendChild(document.createTextNode(t));
