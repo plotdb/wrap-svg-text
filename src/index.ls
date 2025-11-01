@@ -55,7 +55,7 @@ main = (opt = {}) ->
     if flush(obj) => texts.push that
     g = document.createElementNS(ns,"g")
   else
-    spans = text.split '' .map (t) ->
+    spans = "#{if text? => text else ''}".split '' .map (t) ->
       div.appendChild span = document.createElement(\span)
       span.appendChild document.createTextNode(t)
       return span
